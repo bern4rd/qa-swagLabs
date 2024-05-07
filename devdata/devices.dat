@@ -1,0 +1,9 @@
+[iOS]
+udid=CCB5450C-AB2F-44D5-8BA5-48D36746C0AD
+appium_port=4755
+system_port=8201
+
+[Android] 
+udid=emulator-5554
+appium_port=4757
+system_port=8203
