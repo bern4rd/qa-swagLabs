@@ -1,13 +1,12 @@
 *** Settings ***
-Resource            ../../config/settings.robot
-Resource            ../../resources/android/variables/base_variables.robot
-Resource            ../../resources/android/variables/login_variables.robot
-Resource            ../../resources/android/keywords/base_keywords.robot
-Resource            ../../resources/android/keywords/login_keywords.robot
+Resource            ${EXECDIR}${/}resources${/}base_keywords.resource
+Resource            ${EXECDIR}${/}resources${/}base_variables.resource
+
 Test Setup          Before Tests
 Test Teardown       After Tests
 
 *** Test Cases ***
+
 Scenario: Login with wrong credentials
     [Tags]    wrong_login
     Perform Logout
@@ -16,9 +15,16 @@ Scenario: Login with wrong credentials
 
 Scenario: Login successfully
     [Tags]    login_success
-    Perform Logout
-    Perform Login    bob@example.com    10203040
+    Perform Login    standard_user    secret_sauce
+    Home Page Should Be Open
 
 Scenario: Logout successfully
     [Tags]    logout_success
+    Perform Login    standard_user    secret_sauce
+    Home Page Should Be Open
     Perform Logout
+
+Scenario: Just Open The Application
+    [Tags]    open_app
+    Log       Open the application
+    Sleep     10

@@ -1,24 +1,25 @@
 *** Variables ***
 
-
 #Connection
 
-${REMOTE_URL}                                 ${SAUCELABS_REMOTE_URL} 
- 
+${REMOTE_URL}                                 http://localhost:4723/wd/hub 
+${PLATFORM}                                   Android
+
 #Connection iOS          
-${PLATFORM_NAME_IOS}                          iOS
-${PLATFORM_VERSION_IOS}                       16.4.1
-${DEVICE_NAME_IOS}                            iPhone XR
+${PLATFORM_VERSION_IOS}                       17.4
 ${AUTOMATION_NAME_IOS}                        XCUITest
+${BUNDLE_ID}                                  com.saucelabs.SwagLabsMobileApp
+${UDID_iOS}                                   CCB5450C-AB2F-44D5-8BA5-48D36746C0AD
              
 #Connection Android                      
-${PLATFORM_NAME_ANDROID}                      Android
-${PLATFORM_VERSION_ANDROID}                   8.0
-${DEVICE_NAME_ANDROID}                        Android Emulator
+${PLATFORM_VERSION_ANDROID}                   12.0
 ${AUTOMATION_NAME_ANDROID}                    UiAutomator2
+${APP_PACKAGE}                                com.swaglabsmobileapp
+${UDID_Android}                               emulator-5554
  
 #Mapping                      
-${HAMBURGUER_MENU}                            accessibility_id=open menu
+${HAMBURGUER_MENU}                            accessibility_id=test-Menu
+${CART_MENU}                                  accessibility_id=test-Cart
 
 ${FIRST_CATALOG_PRODUCT_NAME_ANDROID}         //android.widget.TextView[@content-desc="store item text"][1]
 ${FIRST_CATALOG_PRODUCT_PRICE_ANDROID}        //android.widget.TextView[@content-desc="store item price"][1]
@@ -40,6 +41,6 @@ ${ADD_CART_BTN}                               accessibility_id=Add To Cart butto
     
 ${LOGIN_MENU}                                 accessibility_id=menu item log in
 ${LOGOUT_MENU}                                accessibility_id=menu item log out
-${USERNAME_FIELD}                             accessibility_id=Username input field
-${PASSWORD_FIELD}                             accessibility_id=Password input field
-${LOGIN_BTN}                                  accessibility_id=Login button
+${USERNAME_FIELD}                             accessibility_id=test-Username
+${PASSWORD_FIELD}                             accessibility_id=test-Password
+${LOGIN_BTN}                                  accessibility_id=test-LOGIN

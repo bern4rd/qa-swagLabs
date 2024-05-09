@@ -1,3 +1,13 @@
+*** Settings ***
+
+Library           AppiumLibrary    run_on_failure=Capture Page Screenshot    timeout=30s
+
+Resource          ${RESOURCES}${/}base_variables.resource
+
+*** Variables ***
+
+${RESOURCES}    ${EXECDIR}${/}resources
+
 *** Keywords ***
 
 ###################################################################################
@@ -5,14 +15,50 @@
 ###################################################################################
 
 Before Tests
-    Open Application
-    ...    ${REMOTE_URL}
-    ...    platformName=${PLATFORM_NAME}
-    ...    platformVersion=${PLATFORM_VERSION}
-    ...    deviceName=${DEVICE_NAME}
-    ...    app=${APP}
-    ...    automationName=${AUTOMATION_NAME}
-    ...    name=${JOB_NAME}
+    #robot --variable PLATFORM:Android your_file.robot
+    &{appium_config_default}=  Create Dictionary
+    ...    remote_url=${REMOTE_URL}
+    ...    appium:noReset=${True}
+    ...    appium:fullReset=${false}
+    ...    appium:forceAppLaunch=true
+    ...    platformName=${PLATFORM}
+
+    Set Global Variable             &{appium_config_default}
+
+    IF  "${PLATFORM}"=="Android"
+
+        &{appium_config_android}    Create Dictionary
+        ...    appPackage=${APP_PACKAGE}
+        ...    udid=${UDID_Android}
+        ...    automationName=${AUTOMATION_NAME_ANDROID}
+        ...    appActivity=${APP_PACKAGE}.MainActivity 
+        ...    useNewWDA=${False}
+        ...    newCommandTimeout=100
+        ...    autoGrantPermissions=${True}     
+
+        &{appium_config_default}=    Create Dictionary    &{appium_config_default}    &{appium_config_android} 
+        Set Global Variable          &{appium_config_default}
+    
+    ELSE IF  "${PLATFORM}"=="iOS"
+    
+        &{appium_config_iOS}        Create Dictionary
+        ...    bundleId=${BUNDLE_ID}
+        ...    udid=${UDID_iOS}
+        ...    useNewWDA=${False}
+        ...    automationName=${AUTOMATION_NAME_IOS}
+        ...    appium:settings[snapshotMaxDepth]=${100}
+        ...    autoGrantPermissions=${True}
+        ...    newCommandTimeout=100
+        ...    showXcodeLog=true
+        
+        &{appium_config_default}=    Create Dictionary    &{appium_config_default}    &{appium_config_iOS} 
+        Set Global Variable          &{appium_config_default}
+    
+    ELSE
+        Fail    Invalid platform: ${PLATFORM}
+    END
+
+    Open Application                &{appium_config_default}
 
 After Tests
     Close Application
@@ -37,27 +83,26 @@ Select Menu Option
 
 Enter Credentials
     [Arguments]    ${username}    ${password}
-    Wait Until Element Is Interactive            ${username_field}
-    Input Text                                   ${username_field}    ${username}
-    Input Text                                   ${password_field}    ${password}
-    Click Element                                ${login_btn}
+    Wait Until Element Is Interactive            ${USERNAME_FIELD}
+    Input Text                                   ${USERNAME_FIELD}    ${username}
+    Input Text                                   ${PASSWORD_FIELD}    ${password}
+    Click Element                                ${LOGIN_BTN}
 
 Perform Login
     [Arguments]    ${username}    ${password}
-    Open Menu
-    Wait Until Element Is Interactive            ${login_menu}
-    Select Menu Option                           ${login_menu}
+    Wait Until Page Contains Element             ${LOGIN_BTN}
+    Wait Until Page Contains Element             ${USERNAME_FIELD}
+    Wait Until Page Contains Element             ${PASSWORD_FIELD}
     Enter Credentials                            ${username}    ${password}
+
+Home Page Should Be Open
+    Wait Until Element Is Interactive            ${HAMBURGUER_MENU}
+    Wait Until Element Is Interactive            ${CART_MENU}
 
 Perform Logout
     Open Menu
     Wait Until Element Is Interactive            ${logout_menu}
     Select Menu Option                           ${logout_menu}
-    Wait Until Element Is Interactive            ${logout_yes}
-    Click Element                                ${logout_yes}
-    Wait Until Element Is Interactive            ${logout_msg}
-    Element Text Should Be                       ${logout_msg}    You are successfully logged out.
-    Click Element                                ${logout_ok}
 
 Get Catalog Product Details
     [Arguments]                                  ${catalog_product_name_locator}    ${catalog_product_price_locator}
