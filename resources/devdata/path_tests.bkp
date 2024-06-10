@@ -1,0 +1,4 @@
+tests/filter_products.robot
+tests/catalog.robot
+tests/login.robot
+tests/test.robot

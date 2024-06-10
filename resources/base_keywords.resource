@@ -146,3 +146,31 @@ Verify Cart Count
     [Arguments]    ${cart_item_count_locator}    ${expected_count}
     Wait Until Element Is Interactive            ${cart_item_count_locator}
     Element Text Should Be                       ${cart_item_count_locator}    ${expected_count}
+
+Filter Products     
+    [Arguments]    ${filer_type}
+    Wait Until Element Is Interactive    accessibility_id=test-Modal Selector Button
+    Click Element                        accessibility_id=test-Modal Selector Button
+    Wait Until Element Is Visible        accessibility_id=${filer_type}    timeout=5
+    Click Element                        accessibility_id=${filer_type}
+
+Products Should Be Filtered  
+    [Arguments]    ${filer_type}
+    Page Should Not Contain Element      accessibility_id=${filer_type}
+
+    IF  "${filer_type}" == "Price (low to high)"
+        Wait Until Element Is Visible        accessibility_id=assets/src/img/red-onesie.jpg    timeout=5
+
+    ELSE IF    "${filer_type}" == "Price (high to low)"
+        No Operation
+
+    ELSE IF    "${filer_type}" == "Name (A to Z)"
+        No Operation
+
+    ELSE IF    "${filer_type}" == "Name (Z to A)"
+        No Operation
+        
+    ELSE
+        Fail    The filter ${filer_type} is not supported
+    END
+    
