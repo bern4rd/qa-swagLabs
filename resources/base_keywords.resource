@@ -126,15 +126,6 @@ Rate The Product and Confirm
     Page Should Contain Text                     Thank you for submitting your review!   
     Click Element                                ${close_review_btn}
 
-Sort Products By
-    [Arguments]                                  ${sort_type_locator}
-    Click Element                                ${sort_btn}
-    Wait Until Element Is Interactive            ${sort_type_locator}
-    Page Should Contain Text                     Sort by:
-    Click Element                                ${sort_type_locator}
-    Wait Until Element Is Interactive            ${sort_btn}
-    Click Element                                ${sort_btn}
-
 Add Product To Cart
     [Arguments]                                  ${product_name_locator}
     Wait Until Element Is Interactive            ${product_name_locator}
@@ -148,29 +139,66 @@ Verify Cart Count
     Element Text Should Be                       ${cart_item_count_locator}    ${expected_count}
 
 Filter Products     
-    [Arguments]    ${filer_type}
+    [Arguments]    ${filter_type}
     Wait Until Element Is Interactive    accessibility_id=test-Modal Selector Button
     Click Element                        accessibility_id=test-Modal Selector Button
-    Wait Until Element Is Visible        accessibility_id=${filer_type}    timeout=5
-    Click Element                        accessibility_id=${filer_type}
+    Sleep                                2s    reason=Wait for the filter options to be displayed
+    Capture Page Screenshot
+    Wait Until Element Is Visible        accessibility_id=${filter_type}    timeout=5
+    Click Element                        accessibility_id=${filter_type}
+
+Filter Products Without Bug
+    [Arguments]    ${filter_type}
+    Wait Until Element Is Interactive    accessibility_id=test-Modal Selector Button
+    Click Element                        accessibility_id=test-Modal Selector Button
+    Capture Page Screenshot
+    IF  "${PLATFORM}" == "iOS"
+        Wait Until Element Is Visible    accessibility_id=${filter_type}    timeout=5
+        Click Element                    accessibility_id=${filter_type}
+    ELSE
+        Wait Until Page Contains         ${filter_type}
+        Click Text                       ${filter_type}
+    END
 
 Products Should Be Filtered  
-    [Arguments]    ${filer_type}
-    Page Should Not Contain Element      accessibility_id=${filer_type}
-
-    IF  "${filer_type}" == "Price (low to high)"
-        Wait Until Element Is Visible        accessibility_id=assets/src/img/red-onesie.jpg    timeout=5
-
-    ELSE IF    "${filer_type}" == "Price (high to low)"
-        No Operation
-
-    ELSE IF    "${filer_type}" == "Name (A to Z)"
-        No Operation
-
-    ELSE IF    "${filer_type}" == "Name (Z to A)"
-        No Operation
-        
-    ELSE
-        Fail    The filter ${filer_type} is not supported
+    [Arguments]    ${filter_type}
+    Page Should Not Contain Element      accessibility_id=${filter_type}
+    IF    "${PLATFORM}"=="Android"
+        IF  "${filter_type}" == "Price (low to high)"
+            Wait Until Element Is Visible        xpath=//android.widget.TextView[@content-desc="test-Item title" and @text="Sauce Labs Onesie"]          timeout=5
+            Page Should Not Contain Element      xpath=//android.widget.TextView[@content-desc="test-Item title" and @text="Sauce Labs Fleece Jacket"]
+        ELSE IF    "${filter_type}" == "Price (high to low)"
+            Wait Until Element Is Visible        xpath=//android.widget.TextView[@content-desc="test-Item title" and @text="Sauce Labs Fleece Jacket"]    timeout=5
+            Page Should Not Contain Element      xpath=//android.widget.TextView[@content-desc="test-Item title" and @text="Sauce Labs Onesie"] 
+        ELSE IF    "${filter_type}" == "Name (A to Z)"
+            Wait Until Element Is Visible        xpath=//android.widget.TextView[@content-desc="test-Item title" and @text="Sauce Labs Backpack"]    timeout=5
+            Page Should Not Contain Element      xpath=//android.widget.TextView[@content-desc="test-Item title" and @text="Test.allTheThings() T-Shirt (Red)"]
+        ELSE IF    "${filter_type}" == "Name (Z to A)"
+            Wait Until Element Is Visible        xpath=//android.widget.TextView[@content-desc="test-Item title" and @text="Test.allTheThings() T-Shirt (Red)"]    timeout=5
+            Page Should Not Contain Element      xpath=//android.widget.TextView[@content-desc="test-Item title" and @text="Sauce Labs Backpack"]            
+        ELSE
+            Fail    The filter ${filter_type} is not supported
+        END    
+    ELSE  #${PLATFORM}=="iOS"
+        IF  "${filter_type}" == "Price (low to high)"
+            Wait Until Element Is Visible        accessibility_id=assets/src/img/red-onesie.jpg        timeout=5
+            Element Should Not Be Visible        accessibility_id=assets/src/img/sauce-pullover.jpg 
+        ELSE IF    "${filter_type}" == "Price (high to low)"
+            Wait Until Element Is Visible        accessibility_id=assets/src/img/sauce-pullover.jpg    timeout=5
+            Element Should Not Be Visible        accessibility_id=assets/src/img/red-onesie.jpg
+        ELSE IF    "${filter_type}" == "Name (A to Z)"
+            Wait Until Element Is Visible        accessibility_id=assets/src/img/sauce-backpack.jpg    timeout=5
+            Element Should Not Be Visible        accessibility_id=assets/src/img/red-tatt.jpg    
+        ELSE IF    "${filter_type}" == "Name (Z to A)"
+            Wait Until Element Is Visible        accessibility_id=assets/src/img/red-tatt.jpg    timeout=5 
+            Element Should Not Be Visible        accessibility_id=assets/src/img/sauce-backpack.jpg           
+        ELSE
+            Fail    The filter ${filter_type} is not supported
+        END    
     END
-    
+
+Element Should Not Be Visible
+    [Arguments]    ${locator}
+    ${res}         Run Keyword And Return Status    Element Should Be Visible    ${locator}
+    Capture Page Screenshot
+    Should Not Be True    ${res}
