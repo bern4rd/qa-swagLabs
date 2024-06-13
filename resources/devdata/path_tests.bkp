@@ -1,4 +1,3 @@
-tests/filter_products.robot
-tests/catalog.robot
-tests/login.robot
-tests/test.robot
+tests/TC01_login.robot
+tests/TC02_filter_products.robot
+tests/TC03_catalog.robot
