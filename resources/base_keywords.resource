@@ -69,12 +69,18 @@ After Tests
 
 Wait Until Element Is Interactive
     [Arguments]                                  ${locator}
-    Wait Until Page Contains Element             ${locator}
-    Wait Until Element Is Visible                ${locator}
+    Wait Until Page Contains Element             ${locator}    timeout=5s
+    Wait Until Element Is Visible                ${locator}    timeout=5s
 
 Open Menu
     Wait Until Element Is Interactive            ${hamburguer_menu}
+
+    #Antes de abrir o menu, o botão de logout não deve estar visível
+    Page Should Not Contain Element              ${logout_menu}    loglevel=TRACE    
+
+    #Só após abrir o menu, o botão de logout deve estar visível
     Click Element                                ${hamburguer_menu}
+    Wait Until Element Is Interactive            ${logout_menu}
 
 Select Menu Option
     [Arguments]                                  ${menu_option}
@@ -101,7 +107,6 @@ Home Page Should Be Open
 
 Perform Logout
     Open Menu
-    Wait Until Element Is Interactive            ${logout_menu}
     Select Menu Option                           ${logout_menu}
 
 Get Catalog Product Details

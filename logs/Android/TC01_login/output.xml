@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.9.6 on darwin)" generated="20240614 23:06:17.960" rpa="false" schemaversion="4">
+<suite id="s1" name="TC01 login" source="/Users/felipe.diniz/Documents/Github/qa-swagLabs/tests/TC01_login.robot">
+<test id="s1-t1" name="Scenario: Login successfully" line="10">
+<kw name="Before Tests" library="base_keywords" type="SETUP">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_default}</var>
+<arg>remote_url=${REMOTE_URL}</arg>
+<arg>appium:noReset=${True}</arg>
+<arg>appium:fullReset=${false}</arg>
+<arg>appium:forceAppLaunch=true</arg>
+<arg>platformName=${PLATFORM}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240614 23:06:18.076" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android }</msg>
+<status status="PASS" starttime="20240614 23:06:18.076" endtime="20240614 23:06:18.076"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240614 23:06:18.077" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android }</msg>
+<status status="PASS" starttime="20240614 23:06:18.076" endtime="20240614 23:06:18.077"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${PLATFORM}&quot;==&quot;Android&quot;">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_android}</var>
+<arg>appPackage=${APP_PACKAGE}</arg>
+<arg>udid=${UDID_Android}</arg>
+<arg>automationName=${AUTOMATION_NAME_ANDROID}</arg>
+<arg>appActivity=${APP_PACKAGE}.MainActivity</arg>
+<arg>useNewWDA=${False}</arg>
+<arg>newCommandTimeout=100</arg>
+<arg>autoGrantPermissions=${True}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240614 23:06:18.077" level="INFO">&amp;{appium_config_android} = { appPackage=com.swaglabsmobileapp | udid=emulator-5554 | automationName=UiAutomator2 | appActivity=com.swaglabsmobileapp.MainActivity | useNewWDA=False | newCommandTimeout=100 | autoGrantPermissions=...</msg>
+<status status="PASS" starttime="20240614 23:06:18.077" endtime="20240614 23:06:18.077"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_default}</var>
+<arg>&amp;{appium_config_default}</arg>
+<arg>&amp;{appium_config_android}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240614 23:06:18.077" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android | appPackage=com.swaglabsmobileapp | udid=emulator-5554 | a...</msg>
+<status status="PASS" starttime="20240614 23:06:18.077" endtime="20240614 23:06:18.077"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240614 23:06:18.077" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android | appPackage=com.swaglabsmobileapp | udid=emulator-5554 | a...</msg>
+<status status="PASS" starttime="20240614 23:06:18.077" endtime="20240614 23:06:18.077"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:18.077" endtime="20240614 23:06:18.078"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${PLATFORM}&quot;==&quot;iOS&quot;">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_iOS}</var>
+<arg>bundleId=${BUNDLE_ID}</arg>
+<arg>udid=${UDID_iOS}</arg>
+<arg>useNewWDA=${False}</arg>
+<arg>automationName=${AUTOMATION_NAME_IOS}</arg>
+<arg>appium:settings[snapshotMaxDepth]=${100}</arg>
+<arg>autoGrantPermissions=${True}</arg>
+<arg>newCommandTimeout=100</arg>
+<arg>showXcodeLog=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:18.078" endtime="20240614 23:06:18.078"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_default}</var>
+<arg>&amp;{appium_config_default}</arg>
+<arg>&amp;{appium_config_iOS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:18.078" endtime="20240614 23:06:18.078"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:18.078" endtime="20240614 23:06:18.078"/>
+</kw>
+<status status="NOT RUN" starttime="20240614 23:06:18.078" endtime="20240614 23:06:18.078"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fail" library="BuiltIn">
+<arg>Invalid platform: ${PLATFORM}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:18.078" endtime="20240614 23:06:18.078"/>
+</kw>
+<status status="NOT RUN" starttime="20240614 23:06:18.078" endtime="20240614 23:06:18.078"/>
+</branch>
+<status status="PASS" starttime="20240614 23:06:18.077" endtime="20240614 23:06:18.078"/>
+</if>
+<kw name="Open Application" library="AppiumLibrary">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Opens a new application to given Appium server.
+Capabilities of appium server, Android and iOS,
+Please check https://appium.io/docs/en/2.1/cli/args/
+| *Option*            | *Man.* | *Description*     |
+| remote_url          | Yes    | Appium server url |
+| alias               | no     | alias             |
+| strict_ssl          | No     | allows you to send commands to an invalid certificate host like a self-signed one. |</doc>
+<status status="PASS" starttime="20240614 23:06:18.078" endtime="20240614 23:06:21.402"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:18.076" endtime="20240614 23:06:21.402"/>
+</kw>
+<kw name="Perform Login" library="base_keywords">
+<arg>standard_user</arg>
+<arg>secret_sauce</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${LOGIN_BTN}</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:21.403" endtime="20240614 23:06:22.246"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${USERNAME_FIELD}</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:22.246" endtime="20240614 23:06:22.280"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${PASSWORD_FIELD}</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:22.281" endtime="20240614 23:06:22.303"/>
+</kw>
+<kw name="Enter Credentials" library="base_keywords">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Wait Until Element Is Interactive" library="base_keywords">
+<arg>${USERNAME_FIELD}</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:22.303" endtime="20240614 23:06:22.320"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20240614 23:06:22.320" endtime="20240614 23:06:22.353"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:22.303" endtime="20240614 23:06:22.353"/>
+</kw>
+<kw name="Input Text" library="AppiumLibrary">
+<arg>${USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:22.355" level="INFO">Typing text 'standard_user' into text field 'accessibility_id=test-Username'</msg>
+<status status="PASS" starttime="20240614 23:06:22.353" endtime="20240614 23:06:22.910"/>
+</kw>
+<kw name="Input Text" library="AppiumLibrary">
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:22.913" level="INFO">Typing text 'secret_sauce' into text field 'accessibility_id=test-Password'</msg>
+<status status="PASS" starttime="20240614 23:06:22.910" endtime="20240614 23:06:24.012"/>
+</kw>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${LOGIN_BTN}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:24.013" level="INFO">Clicking element 'accessibility_id=test-LOGIN'.</msg>
+<status status="PASS" starttime="20240614 23:06:24.012" endtime="20240614 23:06:24.585"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:22.303" endtime="20240614 23:06:24.585"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:21.403" endtime="20240614 23:06:24.585"/>
+</kw>
+<kw name="Home Page Should Be Open" library="base_keywords">
+<kw name="Wait Until Element Is Interactive" library="base_keywords">
+<arg>${HAMBURGUER_MENU}</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:24.586" endtime="20240614 23:06:25.628"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20240614 23:06:25.628" endtime="20240614 23:06:25.672"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:24.586" endtime="20240614 23:06:25.672"/>
+</kw>
+<kw name="Wait Until Element Is Interactive" library="base_keywords">
+<arg>${CART_MENU}</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:25.672" endtime="20240614 23:06:25.697"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20240614 23:06:25.697" endtime="20240614 23:06:25.745"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:25.672" endtime="20240614 23:06:25.745"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:24.585" endtime="20240614 23:06:25.745"/>
+</kw>
+<kw name="After Tests" library="base_keywords" type="TEARDOWN">
+<kw name="Close Application" library="AppiumLibrary">
+<doc>Closes the current application and also close webdriver session.</doc>
+<status status="PASS" starttime="20240614 23:06:25.746" endtime="20240614 23:06:25.865"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:25.745" endtime="20240614 23:06:25.865"/>
+</kw>
+<tag>login_success</tag>
+<status status="PASS" starttime="20240614 23:06:18.076" endtime="20240614 23:06:25.865"/>
+</test>
+<test id="s1-t2" name="Scenario: Logout successfully" line="15">
+<kw name="Before Tests" library="base_keywords" type="SETUP">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_default}</var>
+<arg>remote_url=${REMOTE_URL}</arg>
+<arg>appium:noReset=${True}</arg>
+<arg>appium:fullReset=${false}</arg>
+<arg>appium:forceAppLaunch=true</arg>
+<arg>platformName=${PLATFORM}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240614 23:06:25.866" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android }</msg>
+<status status="PASS" starttime="20240614 23:06:25.866" endtime="20240614 23:06:25.866"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240614 23:06:25.866" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android }</msg>
+<status status="PASS" starttime="20240614 23:06:25.866" endtime="20240614 23:06:25.866"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${PLATFORM}&quot;==&quot;Android&quot;">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_android}</var>
+<arg>appPackage=${APP_PACKAGE}</arg>
+<arg>udid=${UDID_Android}</arg>
+<arg>automationName=${AUTOMATION_NAME_ANDROID}</arg>
+<arg>appActivity=${APP_PACKAGE}.MainActivity</arg>
+<arg>useNewWDA=${False}</arg>
+<arg>newCommandTimeout=100</arg>
+<arg>autoGrantPermissions=${True}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240614 23:06:25.867" level="INFO">&amp;{appium_config_android} = { appPackage=com.swaglabsmobileapp | udid=emulator-5554 | automationName=UiAutomator2 | appActivity=com.swaglabsmobileapp.MainActivity | useNewWDA=False | newCommandTimeout=100 | autoGrantPermissions=...</msg>
+<status status="PASS" starttime="20240614 23:06:25.866" endtime="20240614 23:06:25.867"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_default}</var>
+<arg>&amp;{appium_config_default}</arg>
+<arg>&amp;{appium_config_android}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240614 23:06:25.867" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android | appPackage=com.swaglabsmobileapp | udid=emulator-5554 | a...</msg>
+<status status="PASS" starttime="20240614 23:06:25.867" endtime="20240614 23:06:25.867"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240614 23:06:25.867" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android | appPackage=com.swaglabsmobileapp | udid=emulator-5554 | a...</msg>
+<status status="PASS" starttime="20240614 23:06:25.867" endtime="20240614 23:06:25.867"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:25.866" endtime="20240614 23:06:25.867"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${PLATFORM}&quot;==&quot;iOS&quot;">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_iOS}</var>
+<arg>bundleId=${BUNDLE_ID}</arg>
+<arg>udid=${UDID_iOS}</arg>
+<arg>useNewWDA=${False}</arg>
+<arg>automationName=${AUTOMATION_NAME_IOS}</arg>
+<arg>appium:settings[snapshotMaxDepth]=${100}</arg>
+<arg>autoGrantPermissions=${True}</arg>
+<arg>newCommandTimeout=100</arg>
+<arg>showXcodeLog=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:25.867" endtime="20240614 23:06:25.867"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_default}</var>
+<arg>&amp;{appium_config_default}</arg>
+<arg>&amp;{appium_config_iOS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:25.867" endtime="20240614 23:06:25.867"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:25.867" endtime="20240614 23:06:25.867"/>
+</kw>
+<status status="NOT RUN" starttime="20240614 23:06:25.867" endtime="20240614 23:06:25.867"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fail" library="BuiltIn">
+<arg>Invalid platform: ${PLATFORM}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:25.868" endtime="20240614 23:06:25.868"/>
+</kw>
+<status status="NOT RUN" starttime="20240614 23:06:25.867" endtime="20240614 23:06:25.868"/>
+</branch>
+<status status="PASS" starttime="20240614 23:06:25.866" endtime="20240614 23:06:25.868"/>
+</if>
+<kw name="Open Application" library="AppiumLibrary">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Opens a new application to given Appium server.
+Capabilities of appium server, Android and iOS,
+Please check https://appium.io/docs/en/2.1/cli/args/
+| *Option*            | *Man.* | *Description*     |
+| remote_url          | Yes    | Appium server url |
+| alias               | no     | alias             |
+| strict_ssl          | No     | allows you to send commands to an invalid certificate host like a self-signed one. |</doc>
+<status status="PASS" starttime="20240614 23:06:25.868" endtime="20240614 23:06:29.138"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:25.865" endtime="20240614 23:06:29.138"/>
+</kw>
+<kw name="Perform Login" library="base_keywords">
+<arg>standard_user</arg>
+<arg>secret_sauce</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${LOGIN_BTN}</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:29.139" endtime="20240614 23:06:29.958"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${USERNAME_FIELD}</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:29.958" endtime="20240614 23:06:29.981"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${PASSWORD_FIELD}</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:29.981" endtime="20240614 23:06:30.011"/>
+</kw>
+<kw name="Enter Credentials" library="base_keywords">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Wait Until Element Is Interactive" library="base_keywords">
+<arg>${USERNAME_FIELD}</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:30.011" endtime="20240614 23:06:30.028"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20240614 23:06:30.029" endtime="20240614 23:06:30.052"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:30.011" endtime="20240614 23:06:30.053"/>
+</kw>
+<kw name="Input Text" library="AppiumLibrary">
+<arg>${USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:30.054" level="INFO">Typing text 'standard_user' into text field 'accessibility_id=test-Username'</msg>
+<status status="PASS" starttime="20240614 23:06:30.053" endtime="20240614 23:06:30.593"/>
+</kw>
+<kw name="Input Text" library="AppiumLibrary">
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:30.595" level="INFO">Typing text 'secret_sauce' into text field 'accessibility_id=test-Password'</msg>
+<status status="PASS" starttime="20240614 23:06:30.593" endtime="20240614 23:06:31.741"/>
+</kw>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${LOGIN_BTN}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:31.742" level="INFO">Clicking element 'accessibility_id=test-LOGIN'.</msg>
+<status status="PASS" starttime="20240614 23:06:31.741" endtime="20240614 23:06:32.297"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:30.011" endtime="20240614 23:06:32.297"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:29.138" endtime="20240614 23:06:32.297"/>
+</kw>
+<kw name="Home Page Should Be Open" library="base_keywords">
+<kw name="Wait Until Element Is Interactive" library="base_keywords">
+<arg>${HAMBURGUER_MENU}</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:32.298" endtime="20240614 23:06:33.300"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20240614 23:06:33.300" endtime="20240614 23:06:33.332"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:32.298" endtime="20240614 23:06:33.332"/>
+</kw>
+<kw name="Wait Until Element Is Interactive" library="base_keywords">
+<arg>${CART_MENU}</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:33.333" endtime="20240614 23:06:33.354"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20240614 23:06:33.354" endtime="20240614 23:06:33.384"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:33.332" endtime="20240614 23:06:33.384"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:32.298" endtime="20240614 23:06:33.384"/>
+</kw>
+<kw name="Perform Logout" library="base_keywords">
+<kw name="Open Menu" library="base_keywords">
+<kw name="Wait Until Element Is Interactive" library="base_keywords">
+<arg>${hamburguer_menu}</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:33.385" endtime="20240614 23:06:33.415"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20240614 23:06:33.415" endtime="20240614 23:06:33.456"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:33.385" endtime="20240614 23:06:33.456"/>
+</kw>
+<kw name="Page Should Not Contain Element" library="AppiumLibrary">
+<arg>${logout_menu}</arg>
+<arg>loglevel=TRACE</arg>
+<doc>Verifies that current page not contains `locator` element.</doc>
+<msg timestamp="20240614 23:06:33.479" level="INFO">Current page not contains element 'accessibility_id=test-LOGOUT'.</msg>
+<status status="PASS" starttime="20240614 23:06:33.456" endtime="20240614 23:06:33.479"/>
+</kw>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${hamburguer_menu}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:33.480" level="INFO">Clicking element 'accessibility_id=test-Menu'.</msg>
+<status status="PASS" starttime="20240614 23:06:33.479" endtime="20240614 23:06:33.547"/>
+</kw>
+<kw name="Wait Until Element Is Interactive" library="base_keywords">
+<arg>${logout_menu}</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:33.548" endtime="20240614 23:06:35.116"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20240614 23:06:35.116" endtime="20240614 23:06:35.152"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:33.547" endtime="20240614 23:06:35.152"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:33.385" endtime="20240614 23:06:35.152"/>
+</kw>
+<kw name="Select Menu Option" library="base_keywords">
+<arg>${logout_menu}</arg>
+<kw name="Wait Until Element Is Interactive" library="base_keywords">
+<arg>${menu_option}</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:35.152" endtime="20240614 23:06:35.173"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20240614 23:06:35.174" endtime="20240614 23:06:35.211"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:35.152" endtime="20240614 23:06:35.211"/>
+</kw>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${menu_option}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:35.212" level="INFO">Clicking element 'accessibility_id=test-LOGOUT'.</msg>
+<status status="PASS" starttime="20240614 23:06:35.211" endtime="20240614 23:06:35.264"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:35.152" endtime="20240614 23:06:35.264"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:33.385" endtime="20240614 23:06:35.264"/>
+</kw>
+<kw name="After Tests" library="base_keywords" type="TEARDOWN">
+<kw name="Close Application" library="AppiumLibrary">
+<doc>Closes the current application and also close webdriver session.</doc>
+<status status="PASS" starttime="20240614 23:06:35.265" endtime="20240614 23:06:35.352"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:35.264" endtime="20240614 23:06:35.352"/>
+</kw>
+<tag>logout_success</tag>
+<status status="PASS" starttime="20240614 23:06:25.865" endtime="20240614 23:06:35.352"/>
+</test>
+<test id="s1-t3" name="Scenario: Login with wrong credentials" line="21">
+<kw name="Before Tests" library="base_keywords" type="SETUP">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_default}</var>
+<arg>remote_url=${REMOTE_URL}</arg>
+<arg>appium:noReset=${True}</arg>
+<arg>appium:fullReset=${false}</arg>
+<arg>appium:forceAppLaunch=true</arg>
+<arg>platformName=${PLATFORM}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240614 23:06:35.353" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android }</msg>
+<status status="PASS" starttime="20240614 23:06:35.353" endtime="20240614 23:06:35.353"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240614 23:06:35.353" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android }</msg>
+<status status="PASS" starttime="20240614 23:06:35.353" endtime="20240614 23:06:35.353"/>
+</kw>
+<if>
+<branch type="IF" condition="&quot;${PLATFORM}&quot;==&quot;Android&quot;">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_android}</var>
+<arg>appPackage=${APP_PACKAGE}</arg>
+<arg>udid=${UDID_Android}</arg>
+<arg>automationName=${AUTOMATION_NAME_ANDROID}</arg>
+<arg>appActivity=${APP_PACKAGE}.MainActivity</arg>
+<arg>useNewWDA=${False}</arg>
+<arg>newCommandTimeout=100</arg>
+<arg>autoGrantPermissions=${True}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240614 23:06:35.354" level="INFO">&amp;{appium_config_android} = { appPackage=com.swaglabsmobileapp | udid=emulator-5554 | automationName=UiAutomator2 | appActivity=com.swaglabsmobileapp.MainActivity | useNewWDA=False | newCommandTimeout=100 | autoGrantPermissions=...</msg>
+<status status="PASS" starttime="20240614 23:06:35.353" endtime="20240614 23:06:35.354"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_default}</var>
+<arg>&amp;{appium_config_default}</arg>
+<arg>&amp;{appium_config_android}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240614 23:06:35.354" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android | appPackage=com.swaglabsmobileapp | udid=emulator-5554 | a...</msg>
+<status status="PASS" starttime="20240614 23:06:35.354" endtime="20240614 23:06:35.354"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240614 23:06:35.354" level="INFO">&amp;{appium_config_default} = { remote_url=http://localhost:4723/wd/hub | appium:noReset=True | appium:fullReset=False | appium:forceAppLaunch=true | platformName=Android | appPackage=com.swaglabsmobileapp | udid=emulator-5554 | a...</msg>
+<status status="PASS" starttime="20240614 23:06:35.354" endtime="20240614 23:06:35.354"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:35.353" endtime="20240614 23:06:35.354"/>
+</branch>
+<branch type="ELSE IF" condition="&quot;${PLATFORM}&quot;==&quot;iOS&quot;">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_iOS}</var>
+<arg>bundleId=${BUNDLE_ID}</arg>
+<arg>udid=${UDID_iOS}</arg>
+<arg>useNewWDA=${False}</arg>
+<arg>automationName=${AUTOMATION_NAME_IOS}</arg>
+<arg>appium:settings[snapshotMaxDepth]=${100}</arg>
+<arg>autoGrantPermissions=${True}</arg>
+<arg>newCommandTimeout=100</arg>
+<arg>showXcodeLog=true</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:35.354" endtime="20240614 23:06:35.354"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{appium_config_default}</var>
+<arg>&amp;{appium_config_default}</arg>
+<arg>&amp;{appium_config_iOS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:35.354" endtime="20240614 23:06:35.354"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:35.354" endtime="20240614 23:06:35.354"/>
+</kw>
+<status status="NOT RUN" starttime="20240614 23:06:35.354" endtime="20240614 23:06:35.354"/>
+</branch>
+<branch type="ELSE">
+<kw name="Fail" library="BuiltIn">
+<arg>Invalid platform: ${PLATFORM}</arg>
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<status status="NOT RUN" starttime="20240614 23:06:35.354" endtime="20240614 23:06:35.354"/>
+</kw>
+<status status="NOT RUN" starttime="20240614 23:06:35.354" endtime="20240614 23:06:35.355"/>
+</branch>
+<status status="PASS" starttime="20240614 23:06:35.353" endtime="20240614 23:06:35.355"/>
+</if>
+<kw name="Open Application" library="AppiumLibrary">
+<arg>&amp;{appium_config_default}</arg>
+<doc>Opens a new application to given Appium server.
+Capabilities of appium server, Android and iOS,
+Please check https://appium.io/docs/en/2.1/cli/args/
+| *Option*            | *Man.* | *Description*     |
+| remote_url          | Yes    | Appium server url |
+| alias               | no     | alias             |
+| strict_ssl          | No     | allows you to send commands to an invalid certificate host like a self-signed one. |</doc>
+<status status="PASS" starttime="20240614 23:06:35.355" endtime="20240614 23:06:38.484"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:35.353" endtime="20240614 23:06:38.484"/>
+</kw>
+<kw name="Perform Login" library="base_keywords">
+<arg>username=test</arg>
+<arg>password=test</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${LOGIN_BTN}</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:38.484" endtime="20240614 23:06:39.328"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${USERNAME_FIELD}</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:39.329" endtime="20240614 23:06:39.345"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${PASSWORD_FIELD}</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:39.346" endtime="20240614 23:06:39.362"/>
+</kw>
+<kw name="Enter Credentials" library="base_keywords">
+<arg>${username}</arg>
+<arg>${password}</arg>
+<kw name="Wait Until Element Is Interactive" library="base_keywords">
+<arg>${USERNAME_FIELD}</arg>
+<kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:39.362" endtime="20240614 23:06:39.378"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+<arg>${locator}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until element specified with `locator` is visible.</doc>
+<status status="PASS" starttime="20240614 23:06:39.378" endtime="20240614 23:06:39.404"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:39.362" endtime="20240614 23:06:39.405"/>
+</kw>
+<kw name="Input Text" library="AppiumLibrary">
+<arg>${USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:39.406" level="INFO">Typing text 'test' into text field 'accessibility_id=test-Username'</msg>
+<status status="PASS" starttime="20240614 23:06:39.405" endtime="20240614 23:06:39.949"/>
+</kw>
+<kw name="Input Text" library="AppiumLibrary">
+<arg>${PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:39.953" level="INFO">Typing text 'test' into text field 'accessibility_id=test-Password'</msg>
+<status status="PASS" starttime="20240614 23:06:39.949" endtime="20240614 23:06:41.082"/>
+</kw>
+<kw name="Click Element" library="AppiumLibrary">
+<arg>${LOGIN_BTN}</arg>
+<doc>Click element identified by `locator`.</doc>
+<msg timestamp="20240614 23:06:41.084" level="INFO">Clicking element 'accessibility_id=test-LOGIN'.</msg>
+<status status="PASS" starttime="20240614 23:06:41.082" endtime="20240614 23:06:41.647"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:39.362" endtime="20240614 23:06:41.647"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:38.484" endtime="20240614 23:06:41.647"/>
+</kw>
+<kw name="Wait Until Page Contains" library="AppiumLibrary">
+<arg>Username and password do not match any user in this service.</arg>
+<arg>timeout=5</arg>
+<doc>Waits until `text` appears on current page.</doc>
+<status status="PASS" starttime="20240614 23:06:41.647" endtime="20240614 23:06:42.296"/>
+</kw>
+<kw name="After Tests" library="base_keywords" type="TEARDOWN">
+<kw name="Close Application" library="AppiumLibrary">
+<doc>Closes the current application and also close webdriver session.</doc>
+<status status="PASS" starttime="20240614 23:06:42.296" endtime="20240614 23:06:42.414"/>
+</kw>
+<status status="PASS" starttime="20240614 23:06:42.296" endtime="20240614 23:06:42.414"/>
+</kw>
+<tag>wrong_login</tag>
+<status status="PASS" starttime="20240614 23:06:35.352" endtime="20240614 23:06:42.414"/>
+</test>
+<status status="PASS" starttime="20240614 23:06:17.961" endtime="20240614 23:06:42.415"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">login_success</stat>
+<stat pass="1" fail="0" skip="0">logout_success</stat>
+<stat pass="1" fail="0" skip="0">wrong_login</stat>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="TC01 login">TC01 login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

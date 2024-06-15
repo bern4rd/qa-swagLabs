@@ -1,1 +1,1 @@
-tests/TC02_filter_products.robot
+tests/TC01_login.robot

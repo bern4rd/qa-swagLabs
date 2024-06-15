@@ -40,7 +40,7 @@ ${SORT_BY_NAME_ASC}                           accessibility_id=nameAsc
 ${ADD_CART_BTN}                               accessibility_id=Add To Cart button
     
 ${LOGIN_MENU}                                 accessibility_id=menu item log in
-${LOGOUT_MENU}                                accessibility_id=menu item log out
+${LOGOUT_MENU}                                accessibility_id=test-LOGOUT
 ${USERNAME_FIELD}                             accessibility_id=test-Username
 ${PASSWORD_FIELD}                             accessibility_id=test-Password
 ${LOGIN_BTN}                                  accessibility_id=test-LOGIN
