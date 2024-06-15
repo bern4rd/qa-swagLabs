@@ -154,6 +154,7 @@ Filter Products
 
 Filter Products Without Bug
     [Arguments]    ${filter_type}
+    Set Global Variable                  ${filter_type}
     Wait Until Element Is Interactive    accessibility_id=test-Modal Selector Button
     Click Element                        accessibility_id=test-Modal Selector Button
     Capture Page Screenshot
@@ -166,7 +167,6 @@ Filter Products Without Bug
     END
 
 Products Should Be Filtered  
-    [Arguments]    ${filter_type}
     Page Should Not Contain Element      accessibility_id=${filter_type}
     IF    "${PLATFORM}"=="Android"
         IF  "${filter_type}" == "Price (low to high)"

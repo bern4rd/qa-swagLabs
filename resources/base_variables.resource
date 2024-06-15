@@ -44,3 +44,5 @@ ${LOGOUT_MENU}                                accessibility_id=test-LOGOUT
 ${USERNAME_FIELD}                             accessibility_id=test-Username
 ${PASSWORD_FIELD}                             accessibility_id=test-Password
 ${LOGIN_BTN}                                  accessibility_id=test-LOGIN
+
+${filter_type}                                ${EMPTY}
