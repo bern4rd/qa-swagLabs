@@ -113,7 +113,7 @@ Get Catalog Product Details
     [Arguments]                                  ${catalog_product_name_locator}    ${catalog_product_price_locator}
     ${product_name_text}=     Get Text           ${catalog_product_name_locator}     
     ${product_price_text}=    Get Text           ${catalog_product_price_locator} 
-    [Return]                                     ${product_name_text}               ${product_price_text}
+    RETURN                                       ${product_name_text}               ${product_price_text}
 
 Open Product and Validate Details
     [Arguments]    ${catalog_product_name_locator}    ${product_name_locator}    ${product_price_locator}    ${expected_product_name}    ${expected_product_price}
