@@ -1,6 +1,5 @@
 *** Settings ***
 Resource            ${EXECDIR}${/}resources${/}base_keywords.resource
-Resource            ${EXECDIR}${/}resources${/}base_variables.resource
 
 Test Setup          Before Tests
 Test Teardown       After Tests
