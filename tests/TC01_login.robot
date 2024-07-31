@@ -20,6 +20,6 @@ Scenario: Logout successfully
 
 Scenario: Login with wrong credentials
     [Tags]    wrong_login
-    Given the home page is open
+    Given login page is open
     When user perform login           username=test    password=test
     Then login should be unsuccessful
