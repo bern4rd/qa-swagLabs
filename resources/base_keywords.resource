@@ -94,20 +94,41 @@ Enter Credentials
     Input Text                                   ${PASSWORD_FIELD}    ${password}
     Click Element                                ${LOGIN_BTN}
 
-Perform Login
+user perform login
     [Arguments]    ${username}    ${password}
     Wait Until Page Contains Element             ${LOGIN_BTN}
     Wait Until Page Contains Element             ${USERNAME_FIELD}
     Wait Until Page Contains Element             ${PASSWORD_FIELD}
     Enter Credentials                            ${username}    ${password}
 
-Home Page Should Be Open
+the home page is open
     Wait Until Element Is Interactive            ${HAMBURGUER_MENU}
     Wait Until Element Is Interactive            ${CART_MENU}
+    Capture Page Screenshot
 
-Perform Logout
+user perform logout
     Open Menu
     Select Menu Option                           ${logout_menu}
+    Capture Page Screenshot
+
+login page should be open
+    Wait Until Element Is Interactive            ${LOGIN_BTN}
+    Wait Until Element Is Interactive            ${USERNAME_FIELD}
+    Wait Until Element Is Interactive            ${PASSWORD_FIELD}
+    Capture Page Screenshot
+
+login page is open
+    Wait Until Element Is Interactive            ${USERNAME_FIELD}
+    Wait Until Element Is Interactive            ${PASSWORD_FIELD}
+    Capture Page Screenshot
+
+user should be logged in
+    Before Tests
+    user perform login    ${username}    ${password}
+    Capture Page Screenshot
+
+login should be unsuccessful
+    Wait Until Page Contains      Username and password do not match any user in this service.    timeout=5
 
 Get Catalog Product Details
     [Arguments]                                  ${catalog_product_name_locator}    ${catalog_product_price_locator}
@@ -166,7 +187,19 @@ Filter Products Without Bug
         Click Text                       ${filter_type}
     END
 
-Products Should Be Filtered  
+user filter products by price (low to high)
+    Filter Products Without Bug             filter_type=Price (low to high)
+
+user filter products by price (high to low)
+    Filter Products Without Bug             filter_type=Price (high to low)
+
+user filter products by name (A to Z)
+    Filter Products Without Bug             filter_type=Name (A to Z)
+
+user filter products by name (Z to A)
+    Filter Products Without Bug             filter_type=Name (Z to A)
+
+products should be filtered  
     Page Should Not Contain Element      accessibility_id=${filter_type}
     IF    "${PLATFORM}"=="Android"
         IF  "${filter_type}" == "Price (low to high)"

@@ -8,28 +8,28 @@ Test Teardown       After Tests
 
 Scenario: Filter products by price (low to high)
     [Tags]    filter_products
-    Perform Login    standard_user    secret_sauce
-    Home Page Should Be Open
-    Filter Products Without Bug             filter_type=Price (low to high)
-    Products Should Be Filtered
-
+    [Setup]   user should be logged in
+    Given the home page is open
+    When user filter products by price (low to high)
+    Then products should be filtered
+    
 Scenario: Filter products by price (high to low)
     [Tags]    filter_products
-    Perform Login    standard_user    secret_sauce
-    Home Page Should Be Open
-    Filter Products Without Bug             filter_type=Price (high to low)
-    Products Should Be Filtered
+    [Setup]   user should be logged in
+    Given the home page is open
+    When user filter products by price (high to low)
+    Then products should be filtered
 
 Scenario: Filter products by name (A to Z)
     [Tags]    filter_products
-    Perform Login    standard_user    secret_sauce
-    Home Page Should Be Open
-    Filter Products Without Bug             filter_type=Name (A to Z)
-    Products Should Be Filtered
+    [Setup]   user should be logged in
+    Given the home page is open
+    When user filter products by name (A to Z)
+    Then products should be filtered
 
 Scenario: Filter products by name (Z to A)
     [Tags]    filter_products
-    Perform Login    standard_user    secret_sauce
-    Home Page Should Be Open
-    Filter Products Without Bug             filter_type=Name (Z to A)
-    Products Should Be Filtered
+    [Setup]   user should be logged in
+    Given the home page is open
+    When user filter products by name (Z to A)
+    Then products should be filtered

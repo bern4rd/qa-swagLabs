@@ -46,3 +46,8 @@ ${PASSWORD_FIELD}                             accessibility_id=test-Password
 ${LOGIN_BTN}                                  accessibility_id=test-LOGIN
 
 ${filter_type}                                ${EMPTY}
+
+
+# Valid Credentials
+${username}                                   standard_user
+${password}                                   secret_sauce
