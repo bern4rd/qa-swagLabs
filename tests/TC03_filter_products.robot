@@ -33,3 +33,4 @@ Scenario: Filter products by name (Z to A)
     Given the home page is open
     When user filter products by name (Z to A)
     Then products should be filtered
+    
