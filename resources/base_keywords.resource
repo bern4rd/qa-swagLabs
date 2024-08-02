@@ -14,8 +14,9 @@ ${RESOURCES}    ${EXECDIR}${/}resources
 ### General Keywords ##############################################################
 ###################################################################################
 
-Before Tests
     #robot --variable PLATFORM:Android your_file.robot
+
+Before Tests
     &{appium_config_default}=  Create Dictionary
     ...    remote_url=${REMOTE_URL}
     ...    appium:noReset=${True}

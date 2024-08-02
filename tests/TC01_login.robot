@@ -2,7 +2,7 @@
 Resource            ${EXECDIR}${/}resources${/}base_keywords.resource
 
 Test Setup          Before Tests
-Test Teardown       After Tests
+Test Teardown       Close Application
 
 *** Test Cases ***
 Scenario: Login successfully
@@ -10,4 +10,3 @@ Scenario: Login successfully
     Given login page is open
     When user perform login    ${username}    ${password}
     Then the home page is open   
-    
