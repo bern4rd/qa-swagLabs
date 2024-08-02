@@ -124,10 +124,11 @@ user should be logged in
 
 Filter Products     
     [Arguments]    ${filter_type}
-    Wait Until Element Is Interactive    accessibility_id=${BTN_FILTER}
-    Click Element                        accessibility_id=${BTN_FILTER}
+    Wait Until Element Is Interactive    ${BTN_FILTER}
+    Click Element                        ${BTN_FILTER}
     Wait Until Element Is Visible        accessibility_id=${filter_type}    timeout=5
     Click Element                        accessibility_id=${filter_type}
+    Set Global Variable                  ${filter_type}
 
 # Filter Products
 #     [Arguments]    ${filter_type}
@@ -156,26 +157,30 @@ user filter products by name (Z to A)
     Filter Products             filter_type=Name (Z to A)
 
 products should be filtered  
+    Set Appium Timeout    5
     Page Should Not Contain Element      accessibility_id=${filter_type}
 
     IF  "${filter_type}" == "Price (low to high)"
-        Wait Until Element Is Visible          ${sorted_${PLATFORM}_low_to_high}    timeout=5
-        Page Should Not Contain Element        ${sorted_${PLATFORM}_high_to_low}      
+        Wait Until Element Is Visible          ${sorted_${PLATFORM}_low_to_high}
+        Element Should Not Be Visible          ${sorted_${PLATFORM}_high_to_low}  
     ELSE IF    "${filter_type}" == "Price (high to low)"
-        Wait Until Element Is Visible          ${sorted_${PLATFORM}_high_to_low}    timeout=5
-        Page Should Not Contain Element        ${sorted_${PLATFORM}_low_to_high}      
+        Wait Until Element Is Visible          ${sorted_${PLATFORM}_high_to_low}
+        Element Should Not Be Visible          ${sorted_${PLATFORM}_low_to_high}      
     ELSE IF    "${filter_type}" == "Name (A to Z)"
-        Wait Until Element Is Visible          ${sorted_${PLATFORM}_A_to_Z}  timeout=5
-        Page Should Not Contain Element        ${sorted_${PLATFORM}_Z_to_A}
+        Wait Until Element Is Visible          ${sorted_${PLATFORM}_A_to_Z}
+        Element Should Not Be Visible          ${sorted_${PLATFORM}_Z_to_A}
     ELSE IF    "${filter_type}" == "Name (Z to A)"
-        Wait Until Element Is Visible          ${sorted_${PLATFORM}_Z_to_A}  timeout=5
-        Page Should Not Contain Element        ${sorted_${PLATFORM}_A_to_Z}
+        Wait Until Element Is Visible          ${sorted_${PLATFORM}_Z_to_A}
+        Element Should Not Be Visible          ${sorted_${PLATFORM}_A_to_Z}
     ELSE
         Fail    The filter ${filter_type} is not supported
     END    
+    Set Appium Timeout    10
 
 Element Should Not Be Visible
     [Arguments]    ${locator}
     ${res}         Run Keyword And Return Status    Element Should Be Visible    ${locator}
-    Capture Page Screenshot
-    Should Not Be True    ${res}
+    IF  ${res}
+        Fail    Element should not be visible: ${locator}        
+    END
+    

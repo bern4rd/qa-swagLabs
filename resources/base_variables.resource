@@ -2,7 +2,8 @@
 
 #Connection
 
-${REMOTE_URL}                                 http://localhost:4723/wd/hub 
+${APPIUM_PORT}                                4723
+${REMOTE_URL}                                 http://localhost:${APPIUM_PORT}/wd/hub 
 ${PLATFORM}                                   Android
 
 #Connection iOS          

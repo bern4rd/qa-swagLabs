@@ -13,13 +13,13 @@ Get-Content $arq_e2e | ForEach-Object {
     $jobAndroid = Start-Job -ScriptBlock {
         param ($testPath, $outputPathAndroid)
         Write-Host "Running tests ($testPath) for Android"
-        pipenv run robot --variable PLATFORM:Android --outputdir $outputPathAndroid $testPath
+        pipenv run robot --variable PLATFORM:Android --variable APPIUM_PORT:4724 --outputdir $outputPathAndroid $testPath
     } -ArgumentList $testPath, $outputPathAndroid
 
     $jobiOS = Start-Job -ScriptBlock {
         param ($testPath, $outputPathiOS)
         Write-Host "Running tests ($testPath) for iOS"
-        pipenv run robot --variable PLATFORM:iOS --outputdir $outputPathiOS $testPath
+        pipenv run robot --variable PLATFORM:iOS --variable APPIUM_PORT:4723 --outputdir $outputPathiOS $testPath
     } -ArgumentList $testPath, $outputPathiOS
 
     $jobs += $jobAndroid
