@@ -18,15 +18,35 @@ Para executar este projeto, você precisará das seguintes ferramentas:
 1. **Instalação das Ferramentas**:
    - Xcode: [Instalação via App Store](https://apps.apple.com/us/app/xcode/id497799835?mt=12)
    - Android Studio: [Baixe o Android Studio](https://developer.android.com/studio?hl=pt-br)
-   - Python, Node.js, Robot Framework, Appium: Utilize os comandos abaixo para instalação:
+   - Python, Node.js, Robot Framework, Appium e os pacotes relacionados: Utilize os comandos abaixo para instalação. Copie e cole um a um no seu terminal:
 
    ```bash
+   cd $HOME
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   touch .bashrc
+   touch .profile
+   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> .profile
+   eval "$(/opt/homebrew/bin/brew shellenv)"
    brew install python
    brew install nvm
+   brew install powershell
+   brew install openjdk
+   brew install appium-inspector
+   echo 'export PATH="/opt/homebrew/opt/python/bin:$PATH"' >> ~/.bashrc
    pip install pipenv
    nvm install node
+   echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc
+   echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"' >> ~/.bashrc
    npm install -g appium
    npm install -g appium-doctor
+   echo 'export JAVA_HOME=$(/usr/libexec/java_home)' >> ~/.bashrc
+   echo 'export ANDROID_HOME=~/Library/Android/sdk' >> ~/.bashrc
+   echo 'PATH=$PATH:$ANDROID_HOME/platform-tools' >> ~/.bashrc
+   echo 'PATH=$PATH:$ANDROID_HOME/tools' >> ~/.bashrc
+   echo 'PATH=$PATH:$ANDROID_HOME/tools/bin' >> ~/.bashrc
+   echo 'PATH=$PATH:$ANDROID_HOME/tools/lib' >> ~/.bashrc
+   appium driver install uiautomator2
+   appium driver install xcuitest
    ```
 
 2. **Configuração dos Emuladores**:
