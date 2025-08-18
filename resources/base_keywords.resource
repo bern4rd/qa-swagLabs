@@ -2,9 +2,9 @@
 
 Library           AppiumLibrary    run_on_failure=Capture Page Screenshot    timeout=30s
 
-Resource          ${RESOURCES}${/}base_variables.resource
-Resource          ${RESOURCES}${/}login_variables.resource
-Resource          ${RESOURCES}${/}filter_products_variables.resource
+Resource          base_variables.resource
+Resource          login_variables.resource
+Resource          filter_products_variables.resource
 
 *** Variables ***
 
@@ -31,6 +31,7 @@ Before Tests
     ...    appium:fullReset=${false}
     ...    appium:forceAppLaunch=true
     ...    platformName=${PLATFORM}
+    ...    verify_ssl=${False}
 
     Set Global Variable             &{appium_config_default}
 
