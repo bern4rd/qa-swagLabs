@@ -2,7 +2,7 @@
 Resource            ${EXECDIR}${/}resources${/}base_keywords.resource
 
 Test Setup          Before Tests
-Test Teardown       Close Application
+Test Teardown       After Tests
 
 *** Test Cases ***
 
