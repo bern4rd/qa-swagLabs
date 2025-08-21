@@ -8,7 +8,9 @@ Resource          filter_products_variables.resource
 
 *** Variables ***
 
-${RESOURCES}    ${EXECDIR}${/}resources
+${RESOURCES}                    ${EXECDIR}${/}resources
+&{appium_config_default}        
+${isAppOpen?}                   ${False}        
 
 *** Keywords ***
 
@@ -43,7 +45,7 @@ Before Tests
         ...    automationName=${AUTOMATION_NAME_ANDROID}
         ...    appActivity=${APP_PACKAGE}.MainActivity 
         ...    useNewWDA=${False}
-        ...    newCommandTimeout=100
+        ...    newCommandTimeout=10
         ...    autoGrantPermissions=${True}     
 
         &{appium_config_default}=    Create Dictionary    &{appium_config_default}    &{appium_config_android} 
@@ -69,6 +71,7 @@ Before Tests
     END
 
     Open Application                &{appium_config_default}
+    Set Global Variable             ${isAppOpen?}    ${True}
 
 After Tests
     [Documentation]    Closes the application after the test suite execution is complete.
@@ -84,7 +87,7 @@ Wait Until Element Is Interactive
     ...    - `${locator}`: The locator of the element to wait for.
     [Arguments]                         ${locator}
     Wait Until Page Contains Element    ${locator}    timeout=5s
-    Wait Until Element Is Visible       ${locator}    timeout=5s
+    Element Should Be Visible           ${locator}    timeout=5s
 
 Open Menu
     [Documentation]    Opens the side menu of the application.
@@ -138,7 +141,7 @@ login page should be open
     Wait Until Element Is Interactive            ${LOGIN_BTN}
     Wait Until Element Is Interactive            ${USERNAME_FIELD}
     Wait Until Element Is Interactive            ${PASSWORD_FIELD}
-    Capture Page Screenshot
+    Capture Page Screenshot 
 
 login page is open
     [Documentation]    Verifies that the login page is open by checking the username and password fields.
@@ -148,34 +151,44 @@ login page is open
 
 user should be logged in
     [Documentation]    Ensures the user is logged in. It performs the login with standard credentials.
-    Before Tests
-    user perform login    ${username}    ${password}
-    Capture Page Screenshot
 
-Filter Products     
-    [Documentation]    
+    ${isLogged?}            Run Keyword And Return Status    Element Should Be Visible    ${HAMBURGUER_MENU}
+    
+    IF  not ${isLogged?}
+        Open Application      &{appium_config_default}
+        user perform login    ${username}    ${password}
+    ELSE
+        Log    message=User is already logged in
+        Capture Page Screenshot
+    END
+
+# Filter Products     
+#     [Documentation]    
+#     ...    Applies a filter to the list of products.
+#     ...    - `${filter_type}`: The type of filter to apply (e.g., 'Price (low to high)').
+#     [Arguments]    ${filter_type}
+#     Wait Until Element Is Interactive    ${BTN_FILTER}
+#     Click Element                        ${BTN_FILTER}
+#     Wait Until Element Is Visible        accessibility_id=${filter_type}    timeout=5
+#     Click Element                        accessibility_id=${filter_type}
+#     Set Global Variable                  ${filter_type}
+
+Filter Products
+    [Documentation]
     ...    Applies a filter to the list of products.
     ...    - `${filter_type}`: The type of filter to apply (e.g., 'Price (low to high)').
     [Arguments]    ${filter_type}
+    Set Global Variable                  ${filter_type}
     Wait Until Element Is Interactive    ${BTN_FILTER}
     Click Element                        ${BTN_FILTER}
-    Wait Until Element Is Visible        accessibility_id=${filter_type}    timeout=5
-    Click Element                        accessibility_id=${filter_type}
-    Set Global Variable                  ${filter_type}
-
-# Filter Products
-#     [Arguments]    ${filter_type}
-#     Set Global Variable                  ${filter_type}
-#     Wait Until Element Is Interactive    accessibility_id=${BTN_FILTER}
-#     Click Element                        accessibility_id=${BTN_FILTER}
-#     Capture Page Screenshot
-#     IF  "${PLATFORM}" == "iOS"
-#         Wait Until Element Is Visible    accessibility_id=${filter_type}    timeout=5
-#         Click Element                    accessibility_id=${filter_type}
-#     ELSE
-#         Wait Until Page Contains         ${filter_type}
-#         Click Text                       ${filter_type}
-#     END
+    Capture Page Screenshot
+    IF  "${PLATFORM}" == "iOS"
+        Wait Until Element Is Visible    accessibility_id=${filter_type}    timeout=5
+        Click Element                    accessibility_id=${filter_type}
+    ELSE
+        Wait Until Page Contains         ${filter_type}
+        Click Text                       ${filter_type}
+    END
 
 user filter products by price (low to high)
     [Documentation]    Filters products by price, from lowest to highest.
