@@ -93,6 +93,58 @@ pwsh ./run_tests.ps1
 
 Os resultados dos testes serão organizados em diretórios separados por plataforma dentro da pasta `logs/`.
 
+Para executar os testes via terminal, utilize o seguinte comando:
+
+```bash
+pipenv run robot tests/
+```
+
+Para direcionar a execução para uma feature específica, utilize as test tags com o argumento -i Tag:
+
+```bash
+pipenv run robot -i feature-tag tests/
+```
+
+### Outros argumentos
+
+Variáveis: se quiser passar variáveis para os testes, utilize o argumento -v. Por exemplo:
+
+```bash
+pipenv run robot -v VARIAVEL:valor tests/
+```
+
+Log-Level: para definir o nível de log, utilize o argumento -L. Os níveis disponíveis são: TRACE, DEBUG, INFO, WARN, ERROR e FAIL.
+
+```bash
+pipenv run robot -L DEBUG tests/
+```
+
+Output-Dir: para definir o diretório de saída dos relatórios, utilize o argumento -d.
+
+```bash
+pipenv run robot -d logs/ tests/
+```
+
+### RetryFailed
+
+O listener `RetryFailed` permite reexecutar testes que falharam. Para utilizá-lo, adicione a seguinte opção ao comando:
+
+```bash
+--listener RetryFailed:1
+```
+
+## Executar todas as features
+
+### Android
+```bash
+pipenv run robot -v PLATFORM:Android -L FAIL --listener RetryFailed:1 -d logs/Android/ tests/
+```
+
+### iOS
+```bash
+pipenv run robot -v PLATFORM:iOS -L FAIL --listener RetryFailed:1 -d logs/iOS/ tests/
+```
+
 ## Análise dos Resultados
 
 Os resultados são documentados automaticamente em formato HTML e XML, permitindo uma análise detalhada de cada execução. Eles estão organizados em:
@@ -120,3 +172,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull r
 ## Licença
 
 Este projeto está licenciado sob os termos da licença MIT.
+
+
+## Execução dos Testes
+
