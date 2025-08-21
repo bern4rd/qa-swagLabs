@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation       Test cases for filtering products by price and name in the Swag Labs application.
-Resource            ${EXECDIR}${/}resources${/}base_keywords.resource
+Resource            ${EXECDIR}${/}resources${/}base.resource
 
 Suite Setup         Before Tests
 Suite Teardown      After Tests
