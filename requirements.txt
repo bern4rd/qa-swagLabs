@@ -1,4 +1,4 @@
-Appium-Python-Client==3.2.1
-robotframework==6.1.1
-robotframework-appiumlibrary==2.0.0
-robotframework-debuglibrary==0.9.0
+Appium-Python-Client
+robotframework
+robotframework-appiumlibrary
+robotframework-debuglibrary
