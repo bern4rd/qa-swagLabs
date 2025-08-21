@@ -1,34 +1,32 @@
 *** Settings ***
+Documentation       Test cases for filtering products by price and name in the Swag Labs application.
 Resource            ${EXECDIR}${/}resources${/}base_keywords.resource
 
-Test Setup          Before Tests
-Test Teardown       After Tests
+Suite Setup         Before Tests
+Suite Teardown      After Tests
+Test Tags           feature-filter-products
 
 *** Test Cases ***
 
-Scenario: Filter products by price (low to high)
-    [Tags]    filter_products
-    [Setup]   user should be logged in
+TC-Filter-Products-01: Filter products by price (low to high)
+    [Setup]   user perform login    ${username}    ${password}
     Given the home page is open
     When user filter products by price (low to high)
     Then products should be filtered
-    
-Scenario: Filter products by price (high to low)
-    [Tags]    filter_products
+
+TC-Filter-Products-02: Filter products by price (high to low)
     [Setup]   user should be logged in
     Given the home page is open
     When user filter products by price (high to low)
     Then products should be filtered
 
-Scenario: Filter products by name (A to Z)
-    [Tags]    filter_products
+TC-Filter-Products-03: Filter products by name (A to Z)
     [Setup]   user should be logged in
     Given the home page is open
     When user filter products by name (A to Z)
     Then products should be filtered
 
-Scenario: Filter products by name (Z to A)
-    [Tags]    filter_products
+TC-Filter-Products-04: Filter products by name (Z to A)
     [Setup]   user should be logged in
     Given the home page is open
     When user filter products by name (Z to A)
