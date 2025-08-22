@@ -2,7 +2,6 @@
 
 # Import variable files
 Library           AppiumLibrary    run_on_failure=Capture Page Screenshot    timeout=30s
-#Resource          ..${/}01-access${/}login-keywords.resource
 Resource          common-variables.resource
 
 *** Variables ***
