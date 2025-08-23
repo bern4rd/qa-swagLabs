@@ -23,6 +23,7 @@ ${password}                                   secret_sauce
 #Common Elements
 
 ##Login page
+${LOGIN_PAGE}                                 accessibility_id=test-Login
 ${USERNAME_FIELD}                             accessibility_id=test-Username
 ${PASSWORD_FIELD}                             accessibility_id=test-Password
 ${LOGIN_BTN}                                  accessibility_id=test-LOGIN

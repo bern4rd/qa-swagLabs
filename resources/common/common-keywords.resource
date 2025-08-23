@@ -43,7 +43,7 @@ Before Tests
         ...    automationName=${AUTOMATION_NAME_ANDROID}
         ...    appActivity=${APP_PACKAGE}.MainActivity 
         ...    useNewWDA=${False}
-        ...    newCommandTimeout=10
+        ...    newCommandTimeout=50
         ...    autoGrantPermissions=${True}     
 
         &{appium_config_default}=    Create Dictionary    &{appium_config_default}    &{appium_config_android} 
