@@ -43,17 +43,17 @@ products should be filtered
     Page Should Not Contain Element      accessibility_id=${filter_type}
 
     IF  "${filter_type}" == "Price (low to high)"
-        Wait Until Element Is Visible          ${sorted_${PLATFORM}_low_to_high}
-        Element Should Not Be Visible          ${sorted_${PLATFORM}_high_to_low}  
+        Wait Until Element Is Visible          ${sorted_low_to_high_${PLATFORM}}
+        Element Should Not Be Visible          ${sorted_high_to_low_${PLATFORM}}  
     ELSE IF    "${filter_type}" == "Price (high to low)"
-        Wait Until Element Is Visible          ${sorted_${PLATFORM}_high_to_low}
-        Element Should Not Be Visible          ${sorted_${PLATFORM}_low_to_high}      
+        Wait Until Element Is Visible          ${sorted_high_to_low_${PLATFORM}}
+        Element Should Not Be Visible          ${sorted_low_to_high_${PLATFORM}}      
     ELSE IF    "${filter_type}" == "Name (A to Z)"
-        Wait Until Element Is Visible          ${sorted_${PLATFORM}_A_to_Z}
-        Element Should Not Be Visible          ${sorted_${PLATFORM}_Z_to_A}
+        Wait Until Element Is Visible          ${sorted_A_to_Z_${PLATFORM}}
+        Element Should Not Be Visible          ${sorted_Z_to_A_${PLATFORM}}
     ELSE IF    "${filter_type}" == "Name (Z to A)"
-        Wait Until Element Is Visible          ${sorted_${PLATFORM}_Z_to_A}
-        Element Should Not Be Visible          ${sorted_${PLATFORM}_A_to_Z}
+        Wait Until Element Is Visible          ${sorted_Z_to_A_${PLATFORM}}
+        Element Should Not Be Visible          ${sorted_A_to_Z_${PLATFORM}}
     ELSE
         Fail    The filter ${filter_type} is not supported
     END    
