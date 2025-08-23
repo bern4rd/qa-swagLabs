@@ -9,7 +9,7 @@ Test Tags           feature-filter-products
 *** Test Cases ***
 
 TC-Filter-Products-01: Filter products by price (low to high)
-    [Setup]   user perform login    ${username}    ${password}
+    [Setup]   user perform login
     Given the home page is open
     When user filter products by price (low to high)
     Then products should be filtered

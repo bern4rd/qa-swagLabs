@@ -11,7 +11,7 @@ TC-Login-Logout-01: Login successfully
     [Documentation]    Tests the successful login process with valid credentials.
     [Tags]    feature-login    smoke
     Given login page is open
-    When user perform login    ${username}    ${password}
+    When user perform login    
     Then the home page is open   
 
 TC-Login-Logout-02: Logout successfully
@@ -26,26 +26,26 @@ TC-Login-Logout-03: Login with empty username
     [Documentation]    Tests the login process with an empty username field.
     [Tags]    feature-login-negative
     Given login page is open
-    When user perform login    ""    ${password}
+    When user perform login    user=""    
     Then login error should be displayed   message=Username is required
 
 TC-Login-Logout-04: Login with empty password
     [Documentation]    Tests the login process with an empty username field.
     [Tags]    feature-login-negative
     Given login page is open
-    When user perform login    ${username}    ""
+    When user perform login    pass=""
     Then login error should be displayed   message=Password is required
 
 TC-Login-Logout-05: Login with invalid credentials
     [Documentation]    Tests the login process with an empty username field.
     [Tags]    feature-login-negative
     Given login page is open
-    When user perform login    invalid_user    ${password}
+    When user perform login    user=invalid_user
     Then login error should be displayed       message=Username and password do not match any user in this service.
 
 TC-Login-Logout-06: Login with locked out user
     [Documentation]    Tests the login process with an empty username field.
     [Tags]    feature-login-negative
     Given login page is open
-    When user perform login    locked_out_user    ${password}
+    When user perform login    user=locked_out_user
     Then login error should be displayed       message=Sorry, this user has been locked out.

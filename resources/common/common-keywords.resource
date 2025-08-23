@@ -122,17 +122,21 @@ Enter Credentials
     Input Text                                   ${PASSWORD_FIELD}    ${password}
     Click Element                                ${LOGIN_BTN}
 
+###################################################################################
+### Test Steps ####################################################################
+###################################################################################
+
 user perform login
-    [Documentation]    Performs the complete user login process.
-    ...    - `${username}`: The username for login.
-    ...    - `${password}`: The password for login.
-    [Arguments]    ${username}    ${password}
+    [Documentation]    Performs the login process, using the provided credentials or default values.
+    ...    - `${user}`: The username for login.
+    ...    - `${pass}`: The password for login.
+    [Arguments]    ${user}=${username}    ${pass}=${password}
     Wait Until Page Contains Element             ${LOGIN_BTN}
     Wait Until Page Contains Element             ${USERNAME_FIELD}
     Wait Until Page Contains Element             ${PASSWORD_FIELD}
     Clear Text                                   ${USERNAME_FIELD}
     Clear Text                                   ${PASSWORD_FIELD}
-    Enter Credentials                            ${username}    ${password}
+    Enter Credentials                            ${user}    ${pass}
 
 user should be logged in
     [Documentation]    Ensures the user is logged in. It performs the login with standard credentials.
@@ -141,7 +145,7 @@ user should be logged in
     
     IF  not ${isLogged?}
         Open Application      &{appium_config_default}
-        user perform login    ${username}    ${password}
+        user perform login
     ELSE
         Log    message=User is already logged in
         Capture Page Screenshot
