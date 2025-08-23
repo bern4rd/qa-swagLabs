@@ -9,7 +9,7 @@ Test Tags           feature-shopping-cart
 *** Test Cases ***
 
 TC-Shopping-Cart-01: Add product to cart
-    [Setup]   user perform login    ${username}    ${password}
+    [Setup]   user perform login
     Given the home page is open
     When user adds the product to the cart
     Then the cart should contain the product
