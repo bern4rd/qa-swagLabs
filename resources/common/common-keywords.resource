@@ -4,12 +4,6 @@
 Library           AppiumLibrary    run_on_failure=Capture Page Screenshot    timeout=30s
 Resource          common-variables.resource
 
-*** Variables ***
-
-${RESOURCES}                    ${EXECDIR}${/}resources
-&{appium_config_default}        
-${isAppOpen?}                   ${False}        
-
 *** Keywords ***
 
 ###################################################################################
@@ -78,6 +72,53 @@ After Tests
 ###################################################################################
 ### Common Keywords ###############################################################
 ###################################################################################
+
+Locate Element
+    [Documentation]    Locates an element on the screen by scrolling if necessary.
+    ...    - `${element}`: The element locator to find.
+    ...    - `${direction}`: Direction to swipe (up or down). Default is 'up'.
+    ...    - `${small_swipe}`: Whether to use smaller swipe gestures. Default is False.
+    [Arguments]    ${element}    ${direction}=up    ${small_swipe}=False
+    ${element_on_screen}    Run Keyword And Return Status    Wait Until Page Contains Element    ${element}    timeout=5s
+    IF    ${element_on_screen} != ${True}
+        FOR    ${i}    IN RANGE    ${max_attempts}
+            ${found_element}    Run Keyword And Return Status    Element Should Be Visible    ${element}
+
+            IF    '${found_element}' == 'True'      
+                # Wait 1 second to finish swipe after finding element
+                Sleep    1    
+                Exit For Loop
+            END
+
+            IF    '${direction}' == 'up'
+                IF    '${small_swipe}' == 'True'
+                    Run Keyword If    '${found_element}' != 'True'    Small Swipe Up
+                ELSE
+                    Run Keyword If    '${found_element}' != 'True'    Swipe Up
+                END
+            ELSE  
+                # Direction == down
+                IF    '${small_swipe}' == 'True'
+                    Run Keyword If    '${found_element}' != 'True'    Small Swipe Down
+                ELSE
+                    Run Keyword If    '${found_element}' != 'True'    Swipe Down
+                END
+            END
+        END
+        Run Keyword If    '${found_element}' != 'True'    Fail    Failed to locate element: ${element}
+    END
+
+Swipe Up
+    Swipe By Percent    start_x=${50}    start_y=${50}    end_x=${50}    end_y=${30}    duration=1000
+
+Small Swipe Up
+    Swipe By Percent    start_x=${50}    start_y=${60}    end_x=${50}    end_y=${20}    duration=1000
+
+Swipe Down
+    Swipe By Percent    start_x=${50}    start_y=${20}    end_x=${50}    end_y=${60}    duration=1000
+
+Small Swipe Down
+    Swipe By Percent    start_x=${50}    start_y=${30}    end_x=${50}    end_y=${50}    duration=1000
 
 Wait Until Element Is Interactive
     [Documentation]    

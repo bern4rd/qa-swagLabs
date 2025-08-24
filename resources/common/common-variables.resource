@@ -21,6 +21,7 @@ ${username}                                   standard_user
 ${password}                                   secret_sauce
 
 #Common Elements
+${max_attempts}                               5
 
 ##Login page
 ${LOGIN_PAGE}                                 accessibility_id=test-Login
@@ -34,3 +35,8 @@ ${HAMBURGUER_MENU}                            accessibility_id=test-Menu
 ${CART_MENU}                                  accessibility_id=test-Cart    
 ${LOGIN_MENU}                                 accessibility_id=menu item log in
 ${LOGOUT_MENU}                                accessibility_id=test-LOGOUT
+
+##Auxiliary
+${RESOURCES}                                  ${EXECDIR}${/}resources
+&{appium_config_default}        
+${isAppOpen?}                                 ${False}   
