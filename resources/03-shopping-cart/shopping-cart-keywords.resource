@@ -9,7 +9,7 @@ user opens the shopping cart
     [Documentation]    Opens the shopping cart.
     Page Should Contain Element                  ${CART_MENU}
     Click Element                                ${CART_MENU}
-    Wait Until Element Is Interactive            ${CART_ITEM_COUNT_${PLATFORM}}
+    Wait Until Element Is Interactive            ${SHOPPING_CART_CONTENT_${PLATFORM}}
 
 user adds the product to the cart
     [Documentation]    Adds a product to the shopping cart.
@@ -66,7 +66,7 @@ user removes the product from the cart
     Page Should Contain Element                  ${REMOVE_PRODUCT_BTN}
     Click Element                                ${REMOVE_PRODUCT_BTN}
     Wait Until Page Does Not Contain Element     ${REMOVE_PRODUCT_BTN}
-    
+
 the cart should be empty
     [Documentation]    Ensures that the cart is empty.
     Page Should Contain Element       ${SHOPPING_CART_CONTENT_${PLATFORM}}

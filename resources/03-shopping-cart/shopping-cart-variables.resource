@@ -8,3 +8,4 @@ ${CART_ITEM_COUNT_Android}                    accessibility_id=test-Amount
 ${CART_ITEM_DESCRIPTION_Android}              accessibility_id=test-Description
 ${SHOPPING_CART_CONTENT_Android}              accessibility_id=test-Cart Content
 ${CONTINUE_SHOPPING_BTN_Android}              accessibility_id=test-CONTINUE SHOPPING
+${CHECKOUT_BTN_Android}                       accessibility_id=test-CHECKOUT
