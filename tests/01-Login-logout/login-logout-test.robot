@@ -26,14 +26,14 @@ TC-Login-Logout-03: Login with empty username
     [Documentation]    Tests the login process with an empty username field.
     [Tags]    feature-login-negative
     Given login page is open
-    When user perform login    user=""    
+    When user perform login    user=${EMPTY}    
     Then login error should be displayed   message=Username is required
 
 TC-Login-Logout-04: Login with empty password
     [Documentation]    Tests the login process with an empty username field.
     [Tags]    feature-login-negative
     Given login page is open
-    When user perform login    pass=""
+    When user perform login    pass=${EMPTY}
     Then login error should be displayed   message=Password is required
 
 TC-Login-Logout-05: Login with invalid credentials
