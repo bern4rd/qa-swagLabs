@@ -2,6 +2,8 @@
 
 # Import variable files
 Library           AppiumLibrary    run_on_failure=Capture Page Screenshot    timeout=30s
+Library           pabot.PabotLib
+
 Resource          common-variables.resource
 
 *** Keywords ***
@@ -19,6 +21,26 @@ Before Tests
     ...    It merges the default and platform-specific configurations and then launches the application
     ...    using the 'Open Application' keyword from the AppiumLibrary.
     ...    If an unsupported platform is provided, the test execution will fail.
+    
+    IF  ${PABOT}
+        ${VALUESETNAME} =  Acquire value set 
+        ${UDID} =  Get value from Set  udid
+        ${UDID}    Evaluate    "${UDID}".replace('"', '')
+        ${USED_APPIUMPORT} =   Get value from Set  appium_port
+        ${USED_SYSTEM_PORT}=   Get Value From Set   system_port
+
+        Set Global Variable    ${VALUESETNAME}    ${VALUESETNAME}
+        Set Global Variable    ${UDID}    ${UDID}
+        Set Global Variable    ${USED_APPIUMPORT}    ${USED_APPIUMPORT}
+        Set Global Variable    ${USED_SYSTEM_PORT}    ${USED_SYSTEM_PORT}
+
+        &{appium_config_pabot}=  Create Dictionary
+        ...    udid=${UDID}
+        ...    systemPort=${USED_SYSTEM_PORT}
+        ...    appiumPort=${USED_APPIUMPORT}
+
+    END
+
     &{appium_config_default}=  Create Dictionary
     ...    remote_url=${REMOTE_URL}
     ...    appium:noReset=${True}
@@ -41,6 +63,11 @@ Before Tests
         ...    autoGrantPermissions=${True}     
 
         &{appium_config_default}=    Create Dictionary    &{appium_config_default}    &{appium_config_android} 
+        
+        IF  ${PABOT}                 
+        &{appium_config_default}=    Create Dictionary    &{appium_config_default}    &{appium_config_pabot}
+        END
+        
         Set Global Variable          &{appium_config_default}
     
     ELSE IF  "${PLATFORM}"=="iOS"
@@ -56,6 +83,11 @@ Before Tests
         ...    showXcodeLog=true
         
         &{appium_config_default}=    Create Dictionary    &{appium_config_default}    &{appium_config_iOS} 
+
+        IF  ${PABOT}                 
+        &{appium_config_default}=    Create Dictionary    &{appium_config_default}    &{appium_config_pabot}
+        END
+
         Set Global Variable          &{appium_config_default}
     
     ELSE

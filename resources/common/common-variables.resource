@@ -1,5 +1,6 @@
 *** Variables ***
 #Connection
+${PABOT}                                      ${True}
 ${APPIUM_PORT}                                4723
 ${REMOTE_URL}                                 http://localhost:${APPIUM_PORT}/wd/hub 
 ${PLATFORM}                                   Android
