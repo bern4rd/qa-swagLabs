@@ -8,20 +8,29 @@ Test Tags           feature-checkout
 
 *** Test Cases ***
 
-TC-Checkout-01: Checkout with valid information
-    [Setup]   user should be logged in
-    Given the cart is not empty
+TC-Checkout-01: Checkout with empty first name
+    [Tags]    negative
+    [Setup]   user should be at information checkout page
+    Given user is at information checkout page
+    When user proceeds to checkout with empty first name
+    Then message error First Name is required should be displayed
+
+TC-Checkout-02: Checkout with empty last name
+    [Tags]    negative
+    [Setup]   user should be at information checkout page
+    Given user is at information checkout page
+    When user proceeds to checkout with empty last name
+    Then message error Last Name is required should be displayed
+
+TC-Checkout-03: Checkout with empty zip/postal code
+    [Tags]    negative
+    [Setup]   user should be at information checkout page
+    Given user is at information checkout page
+    When user proceeds to checkout with empty zip/postal code
+    Then message error Postal Code is required should be displayed
+
+TC-Checkout-04: Checkout a product successfully
+    [Setup]   user should be at information checkout page
+    Given user is at information checkout page
     When user proceeds to checkout with valid information
-    Then the order should be placed successfully
-
-TC-Checkout-02: Checkout with empty cart
-    [Setup]   user should be logged in
-    Given the cart is empty
-    When user attempts to checkout
-    Then an error message should be displayed
-
-TC-Checkout-03: Checkout with invalid payment information
-    [Setup]   user should be logged in
-    Given the cart is not empty
-    When user proceeds to checkout with invalid payment information
-    Then an error message should be displayed
+    Then user should be redirected to the order confirmation page
