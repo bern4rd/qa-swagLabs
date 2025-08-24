@@ -1,4 +1,6 @@
 .venv/
 app/
+results/
 Pipfile.lock
 Pipfile
+.pabotsuitenames
