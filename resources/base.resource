@@ -1,6 +1,5 @@
 *** Settings ***
-
-
+Documentation     Base resource file containing common settings, variables, and keywords for the Swag Labs application tests.
 # Import keyword files
 Resource          common${/}common-keywords.resource
 Resource          01-access${/}login-keywords.resource    
