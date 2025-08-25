@@ -5,5 +5,10 @@ system_port=8201
 
 [Device2] 
 udid=emulator-5556
-appium_port=4723
+appium_port=4724
 system_port=8203
+
+[Device3] 
+udid=emulator-5558
+appium_port=4725
+system_port=8205
