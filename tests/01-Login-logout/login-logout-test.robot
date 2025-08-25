@@ -5,6 +5,8 @@ Resource            ${EXECDIR}${/}resources${/}base.resource
 Suite Setup         Before Tests
 Suite Teardown      After Tests
 
+Task Tags           feature-login-logout
+
 *** Test Cases ***
 
 TC-Login-Logout-01: Login successfully
