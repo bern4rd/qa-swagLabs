@@ -1,24 +1,25 @@
-[tool.poetry]
+[project]
 name = "qa-swaglabs"
 version = "0.1.0"
 description = ""
-package-mode = false
-authors = [
-    "Felipe Bernard de Oliveira Soares Diniz <felipebernard.pe@gmail.com>"
-]
-license = "MIT"
+authors = [{name = "Felipe Bernard de Oliveira Soares Diniz", email = "felipebernard.pe@gmail.com"}]
+license = {text = "MIT"}
 readme = "README.md"
+requires-python = ">=3.9"
 
-[tool.poetry.dependencies]
-python = "^3.9"
-robotframework = "^7.3.2"
-robotframework-appiumlibrary = "^3.1"
-robotframework-faker = "^6.0.0"
-robotframework-pabot = "^5.0.0"
-robotframework-retryfailed = "^0.2.0"
-robotframework-listenerlibrary = "^1.0.3"
-robotframework-debuglibrary = "^2.5.0"
-faker = "^37.5.3"
+dependencies = [
+    "robotframework>=7.3.2",
+    "robotframework-appiumlibrary>=3.1",
+    "robotframework-faker>=6.0.0",
+    "robotframework-pabot>=5.0.0",
+    "robotframework-retryfailed>=0.2.0",
+    "robotframework-listenerlibrary>=1.0.3",
+    "robotframework-debuglibrary>=2.5.0",
+    "faker>=37.5.3",
+]
+
+[tool.poetry]
+package-mode = false
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
