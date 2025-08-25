@@ -1,8 +1,9 @@
 *** Settings ***
 
 # Import variable files
-Library           AppiumLibrary    run_on_failure=Capture Page Screenshot    timeout=30s
+Library           AppiumLibrary
 Library           pabot.PabotLib
+Library           FakerLibrary
 
 Resource          common-variables.resource
 
@@ -29,10 +30,10 @@ Before Tests
         ${USED_APPIUMPORT} =   Get value from Set  appium_port
         ${USED_SYSTEM_PORT}=   Get Value From Set   system_port
 
-        Set Global Variable    ${VALUESETNAME}    ${VALUESETNAME}
-        Set Global Variable    ${UDID}    ${UDID}
+        Set Global Variable    ${VALUESETNAME}       ${VALUESETNAME}
+        Set Global Variable    ${UDID}               ${UDID}
         Set Global Variable    ${USED_APPIUMPORT}    ${USED_APPIUMPORT}
-        Set Global Variable    ${USED_SYSTEM_PORT}    ${USED_SYSTEM_PORT}
+        Set Global Variable    ${USED_SYSTEM_PORT}   ${USED_SYSTEM_PORT}
 
         &{appium_config_pabot}=  Create Dictionary
         ...    udid=${UDID}
