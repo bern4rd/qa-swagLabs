@@ -1,6 +1,5 @@
 .venv/
 app/
 results/
-Pipfile.lock
-Pipfile
+poetry.lock
 .pabotsuitenames
