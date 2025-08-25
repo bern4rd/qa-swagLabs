@@ -2,10 +2,10 @@
 Documentation       Test cases for login and logout into the Swag Labs application.
 Resource            ${EXECDIR}${/}resources${/}base.resource
 
-Suite Setup         Before Tests
-Suite Teardown      After Tests
+Test Setup           Before Tests
+Suite Teardown       After Tests
 
-Task Tags           feature-login-logout
+Task Tags            feature-login-logout
 
 *** Test Cases ***
 
@@ -19,7 +19,7 @@ TC-Login-Logout-01: Login successfully
 TC-Login-Logout-02: Logout successfully
     [Documentation]    Tests the successful logout process after logging in.
     [Tags]    feature-logout    smoke
-    [Setup]   user should be logged in
+    [Setup]   Run Keywords   Before Tests  AND  user should be logged in
     Given the home page is open
     When user perform logout
     Then login page should be open
