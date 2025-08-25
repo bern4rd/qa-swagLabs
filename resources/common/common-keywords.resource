@@ -171,6 +171,12 @@ Element Should Not Be Visible
         Fail    Element should not be visible: ${locator}        
     END
 
+Element Text Should Be a Number
+    [Documentation]        Verifies that the text of the element is a valid number
+    [Arguments]            ${element_locator}
+    ${element_text}        Get Element Attribute    locator=${element_locator}    attribute=text
+    Should Match Regexp    string=${element_text}    pattern=^-?[0-9]+(?:[.,][0-9]+)?$    msg=O texto "${element_text}" não é um número
+
 Open Menu
     [Documentation]    Opens the side menu of the application.
     Wait Until Element Is Interactive            ${hamburguer_menu}
@@ -218,9 +224,8 @@ user should be logged in
     ${isLogged?}            Run Keyword And Return Status    Element Should Be Visible    ${HAMBURGUER_MENU}
     
     IF  not ${isLogged?}
-        Open Application      &{appium_config_default}
+        #Open Application      &{appium_config_default}
         user perform login
     ELSE
         Log    message=User is already logged in
-        Capture Page Screenshot
     END

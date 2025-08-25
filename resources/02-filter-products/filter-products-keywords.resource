@@ -1,5 +1,4 @@
 *** Settings ***
-Library           AppiumLibrary    run_on_failure=Capture Page Screenshot    timeout=30s
 Resource          ..${/}common${/}common-keywords.resource
 Resource          filter-products-variables.resource
 
@@ -12,7 +11,6 @@ Filter Products
     Set Global Variable                  ${filter_type}
     Wait Until Element Is Interactive    ${BTN_FILTER}
     Click Element                        ${BTN_FILTER}
-    Capture Page Screenshot
     IF  "${PLATFORM}" == "iOS"
         Wait Until Element Is Visible    accessibility_id=${filter_type}    timeout=5
         Click Element                    accessibility_id=${filter_type}

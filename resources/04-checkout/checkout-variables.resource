@@ -17,10 +17,10 @@ ${CHECKOUT_OVERVIEW_ITEM_TOTAL_Android}              Item total: $29.99
 ${CHECKOUT_OVERVIEW_TAX_Android}                     Tax: $2.40
 ${CHECKOUT_OVERVIEW_TOTAL_Android}                   Total: $32.39
 
-${CHECKOUT_OVERVIEW_CANCEL_BTN_Android}              accessibility_id=test-test-CANCEL
-${CHECKOUT_OVERVIEW_FINISH_BTN_Android}              accessibility_id=test-test-FINISH
+${CHECKOUT_OVERVIEW_CANCEL_BTN_Android}              accessibility_id=test-CANCEL
+${CHECKOUT_OVERVIEW_FINISH_BTN_Android}              accessibility_id=test-FINISH
 
 ${CHECKOUT_COMPLETE_PAGE_Android}                    accessibility_id=test-CHECKOUT: COMPLETE!
-${CHECKOUT_COMPLETE_TITLE_Android}                   THANK YOU FOR YOUR ORDER
+${CHECKOUT_COMPLETE_TITLE_Android}                   THANK YOU FOR YOU ORDER
 ${CHECKOUT_COMPLETE_MESSAGE_Android}                 Your order has been dispatched, and will arrive just as fast as the pony can get there!
 ${CHECKOUT_COMPLETE_BACK_HOME_BTN_Android}           accessibility_id=test-BACK HOME

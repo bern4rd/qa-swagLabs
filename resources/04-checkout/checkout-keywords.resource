@@ -1,5 +1,4 @@
 *** Settings ***
-Library           AppiumLibrary    run_on_failure=Capture Page Screenshot    timeout=30s
 Resource          ..${/}common${/}common-keywords.resource
 Resource          ..${/}03-shopping-cart${/}shopping-cart-keywords.resource
 Resource          checkout-variables.resource
