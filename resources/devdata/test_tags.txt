@@ -1,1 +1,4 @@
+feature-login-logout
 feature-filter_products
+feature-shopping-cart
+feature-checkout
