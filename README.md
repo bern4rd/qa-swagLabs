@@ -4,6 +4,7 @@ Este repositório contém scripts de automação de testes desenvolvidos para a 
 
 ## Requisitos
 
+### Apenas MacOS
 Para executar este projeto, você precisará das seguintes ferramentas:
 
 - **Xcode**: Necessário para simulação de dispositivos iOS.
@@ -33,7 +34,7 @@ Para executar este projeto, você precisará das seguintes ferramentas:
    brew install openjdk
    brew install appium-inspector
    echo 'export PATH="/opt/homebrew/opt/python/bin:$PATH"' >> ~/.bashrc
-   pip install pipenv
+   pip install poetry
    nvm install node
    echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc
    echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"' >> ~/.bashrc
@@ -58,7 +59,7 @@ Para executar este projeto, você precisará das seguintes ferramentas:
    Navegue até o diretório do projeto e instale as dependências utilizando o Pipenv:
 
    ```bash
-   pipenv install
+   poetry install
    ```
 
 ## Estrutura do Projeto
@@ -67,20 +68,80 @@ A estrutura do projeto está organizada da seguinte forma:
 
 ```plaintext
 .
-├── requirements.txt
-├── resources/
-│   ├── base_keywords.resource
-│   ├── base_variables.resource
-│   └── devdata/
-│       ├── path_tests.bkp
-│       └── path_tests.txt
+├── app
+│   └── Android.SauceLabs.Mobile.Sample.app.2.7.1.apk
+├── logs
+│   ├── Android
+│   │   ├── TC01_login
+│   │   │   ├── log.html
+│   │   │   ├── output.xml
+│   │   │   └── report.html
+│   │   ├── TC02_logout
+│   │   │   ├── log.html
+│   │   │   ├── output.xml
+│   │   │   └── report.html
+│   │   └── TC03_filter_products
+│   │       ├── log.html
+│   │       ├── output.xml
+│   │       └── report.html
+│   └── iOS
+│       ├── TC01_login
+│       │   ├── log.html
+│       │   ├── output.xml
+│       │   └── report.html
+│       ├── TC02_logout
+│       │   ├── log.html
+│       │   ├── output.xml
+│       │   └── report.html
+│       └── TC03_filter_products
+│           ├── log.html
+│           ├── output.xml
+│           └── report.html
+├── poetry.lock
+├── pyproject.toml
+├── README.md
+├── resources
+│   ├── 01-access
+│   │   └── login-keywords.resource
+│   ├── 02-filter-products
+│   │   ├── filter-products-keywords.resource
+│   │   └── filter-products-variables.resource
+│   ├── 03-shopping-cart
+│   │   ├── shopping-cart-keywords.resource
+│   │   └── shopping-cart-variables.resource
+│   ├── 04-checkout
+│   │   ├── checkout-keywords.resource
+│   │   └── checkout-variables.resource
+│   ├── 05-geolocation
+│   │   ├── geolocation-keywords.resource
+│   │   └── geolocation-variables.resource
+│   ├── base.resource
+│   ├── common
+│   │   ├── common-keywords.resource
+│   │   └── common-variables.resource
+│   └── devdata
+│       ├── devices.dat
+│       ├── test_tags.txt
+│       └── test_tags_e2e.txt
 ├── run_tests.ps1
-└── tests/
+├── run_tests_old.ps1
+├── run_tests_short.ps1
+└── tests
+    ├── 01-Login-logout
+    │   └── login-logout-test.robot
+    ├── 02-Filter-products
+    │   └── filter-products-test.robot
+    ├── 03-Shopping-cart
+    │   └── shopping-cart-test.robot
+    ├── 04-Checkout
+    │   └── checkout-test.robot
+    └── 05-Geolocation
+        └── geolocation-test.robot
 ```
 
-- `requirements.txt`: Contém a lista de todas as dependências e bibliotecas necessárias.
+- `pyproject.toml`: Contém a lista de todas as dependências e bibliotecas necessárias.
 - `resources/`: Diretório que armazena arquivos de recursos utilizados nos testes.
-- `run_tests.ps1`: Script PowerShell utilizado para executar os testes automatizados em paralelo nos dispositivos Android e iOS.
+- `run_tests_old.ps1`: Script PowerShell utilizado para executar os testes automatizados em paralelo nos dispositivos Android e iOS.
 - `tests/`: Diretório onde os casos de teste automatizados são armazenados.
 
 ## Execução dos Testes
@@ -96,13 +157,13 @@ Os resultados dos testes serão organizados em diretórios separados por platafo
 Para executar os testes via terminal, utilize o seguinte comando:
 
 ```bash
-pipenv run robot tests/
+poetry run robot tests/
 ```
 
 Para direcionar a execução para uma feature específica, utilize as test tags com o argumento -i Tag:
 
 ```bash
-pipenv run robot -i feature-tag tests/
+poetry run robot -i feature-tag tests/
 ```
 
 ### Outros argumentos
@@ -110,19 +171,19 @@ pipenv run robot -i feature-tag tests/
 Variáveis: se quiser passar variáveis para os testes, utilize o argumento -v. Por exemplo:
 
 ```bash
-pipenv run robot -v VARIAVEL:valor tests/
+poetry run robot -v VARIAVEL:valor tests/
 ```
 
 Log-Level: para definir o nível de log, utilize o argumento -L. Os níveis disponíveis são: TRACE, DEBUG, INFO, WARN, ERROR e FAIL.
 
 ```bash
-pipenv run robot -L DEBUG tests/
+poetry run robot -L DEBUG tests/
 ```
 
 Output-Dir: para definir o diretório de saída dos relatórios, utilize o argumento -d.
 
 ```bash
-pipenv run robot -d logs/ tests/
+poetry run robot -d logs/ tests/
 ```
 
 ### RetryFailed
@@ -137,12 +198,12 @@ O listener `RetryFailed` permite reexecutar testes que falharam. Para utilizá-l
 
 ### Android
 ```bash
-pipenv run robot -v PLATFORM:Android -L FAIL --listener RetryFailed:1 -d logs/Android/ tests/
+poetry run robot -v PLATFORM:Android -L DEBUG --listener RetryFailed:1 -d logs/Android/ tests/
 ```
 
 ### iOS
 ```bash
-pipenv run robot -v PLATFORM:iOS -L FAIL --listener RetryFailed:1 -d logs/iOS/ tests/
+poetry run robot -v PLATFORM:iOS -L DEBUG --listener RetryFailed:1 -d logs/iOS/ tests/
 ```
 
 ## Análise dos Resultados
@@ -172,7 +233,3 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull r
 ## Licença
 
 Este projeto está licenciado sob os termos da licença MIT.
-
-
-## Execução dos Testes
-
