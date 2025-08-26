@@ -3,7 +3,7 @@ Documentation       Test cases for login and logout into the Swag Labs applicati
 Resource            ${EXECDIR}${/}resources${/}base.resource
 
 Test Setup           Before Tests
-Suite Teardown       After Tests
+Test Teardown        After Tests
 
 Task Tags            feature-login-logout
 
