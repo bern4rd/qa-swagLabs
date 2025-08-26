@@ -1,4 +1,5 @@
-feature-login
-feature-logout
+feature-login-logout
 feature-filter-products
 feature-shopping-cart
+feature-checkout
+feature-geolocation
